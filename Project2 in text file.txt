@@ -17,7 +17,7 @@ chi$trip_type <- ifelse(chi$Start.Station == chi$End.Station, 'round trip', 'one
 table(chi$trip_type)
 
 
-#the position
+#The position
 quan <- as.vector(table(chi$trip_type))
 pos <- cumsum(quan) - quan/2 #to put the label in the center of the pie, we use this equation
 quantity <- data.frame(trip_type = c('round trip', 'one way'), quantity= quan, position = pos)
@@ -52,7 +52,7 @@ head(wash$Start.Time2)
 
 
 
-#now lets store the month of start time into a variable Start.Time3
+#Now lets store the month of start time into a variable Start.Time3
 wash$Start.Time3<-format(wash$Start.Time2, "%B")
 
 #To know the total number of ridership per month
@@ -87,7 +87,7 @@ head(ny$Start.Time2)
 
 
 
-#now lets store the month of start time into a variable Start.Time4
+#Now lets store the month of start time into a variable Start.Time4
 ny$Start.Time4<-format(ny$Start.Time2, "%B")
 
 
@@ -100,7 +100,7 @@ wt <- ggplot(aes(x = Start.Time4 ), data = subset(ny,!is.na(Gender))) +
   facet_wrap(~Gender, nrow=2)
 wt
 
-#to know the total number of ridership per month for each gender
+#To know the total number of ridership per month for each gender
 by(ny$Start.Time4, ny$Gender, summary)
 
 
