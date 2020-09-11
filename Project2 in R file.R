@@ -66,7 +66,7 @@ Start.time_f(wash$Start.Time2)
 
 #Now let's plot
 ggplot(wash, aes(x = Start.Time3 )) +
-  geom_histogram(stat = 'count', colour = 'white', binwidth = 50) +
+  geom_bar(stat = 'count', colour = 'white') +
   labs(x = "Start Time of trip by Month")+
   labs(y = "Frequency")+
   ggtitle('Distribution of Start Time by Month')
