@@ -38,34 +38,42 @@ pie + coord_polar(theta = 'y')
 #It is clear from the pie chart, the number of one way trips in Chicago is higher than round trips.
 
 
-
-
 #Q2
-#Which month has the highes number of trips?
+#Which month has the highest number of trips?
 
 wash <- read.csv('washington.csv')
 
 #to convert Start.Time from factor to date
 class(wash$Start.Time)
+
+
+
 wash$Start.Time2 <- as.POSIXlt(wash$Start.Time, format = "%Y-%m-%d %H:%M:%S")
 head(wash$Start.Time2)
 
 
-
-#now lets store the month of start time into a variable Start.Time3
+#now lets store the month of start time into a variable Start.Time3 to use it in the plot
 wash$Start.Time3<-format(wash$Start.Time2, "%B")
 
 #To know the total number of ridership per month
-table(wash$Start.Time3)
+#As a function
+Start.time_f <- function(x) {
+  Start.Time_new<-format(x, "%B")
+  table(Start.Time_new)
+}
+Start.time_f(wash$Start.Time2)
 
-#I plot that variable
+
+#Now let's plot
 ggplot(wash, aes(x = Start.Time3 )) +
-  geom_histogram(stat = 'count', colour = 'white', binwidth = 50) +
+  geom_bar(stat = 'count', colour = 'white') +
   labs(x = "Start Time of trip by Month")+
   labs(y = "Frequency")+
   ggtitle('Distribution of Start Time by Month')
 
+
 #I found out that there are only 6 months the riderships rented the bikes. Also, the chart shows June as the highest number of trips in Washington.
+
 
 
 
